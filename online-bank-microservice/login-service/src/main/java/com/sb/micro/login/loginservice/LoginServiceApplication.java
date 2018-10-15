@@ -10,9 +10,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan("com.sb.micro.login.vo")
 @EnableTransactionManagement
 @ComponentScan(basePackages="com.sb.micro.login.*")
-public class LoginServiceApplication {
-
-	public static void main(String[] args) {
+public class LoginServiceApplication 
+{
+	public static void main(String[] args)
+	{
 		SpringApplication.run(LoginServiceApplication.class, args);
 	}
 }
