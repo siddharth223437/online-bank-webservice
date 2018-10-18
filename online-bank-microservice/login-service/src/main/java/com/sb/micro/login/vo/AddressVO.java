@@ -1,19 +1,19 @@
 package com.sb.micro.login.vo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class AddressVO {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	int addressId;
-	String city,country,state;
-	@ManyToOne
+	private int addressId;
+	private String city,country,state;
+	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private UsersVO userVO;
 	
 	public int getAddressId() {
@@ -39,5 +39,13 @@ public class AddressVO {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public UsersVO getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UsersVO userVO) {
+		this.userVO = userVO;
 	}
 }

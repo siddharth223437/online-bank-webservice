@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.UpdateTimestamp;
 
 
@@ -15,18 +17,20 @@ public class UsersVO
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	int userId;
-	String firstName,lastName,mobileNumber,createdBy;
-	boolean isAvailable;
+	private int userId;
+	private String firstName,lastName,mobileNumber,createdBy;
+	private boolean isAvailable;
 	@UpdateTimestamp
 	LocalDateTime lastUpdated;
 	@OneToMany (mappedBy="userVO")
 	private List<AddressVO> addressVO; 
 
 	public List<AddressVO> getAddressVO() {
+
 		return addressVO;
 	}
 	public void setAddressVO(List<AddressVO> addressVO) {
+
 		this.addressVO = addressVO;
 	}
 	public boolean isAvailable() {
